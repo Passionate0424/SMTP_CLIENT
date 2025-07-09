@@ -18,6 +18,11 @@
     Date:       2020-06-22
     Author:     WKJay
     Modify:     增加附件功能
+    
+ 4. Version:    V1.0.3
+    Date:       2025-07-10
+    Author:     Passionate0424
+    Modify:     支持发送HTML格式邮件，支持设置字体颜色等属性
 *************************************************/
 
 #include <stdint.h>
@@ -804,7 +809,8 @@ static int smtp_send_content(void)
         sprintf(content_buf,
                 "FROM: <%s>\r\n"
                 "TO: <%s>\r\n"
-                "SUBJECT:%s\r\n\r\n"
+                "SUBJECT:%s\r\n"
+                "Content-Type: text/html; charset=\"utf-8\"\r\n\r\n"
                 "%s\r\n\r\n",
                 smtp_session.address_from, smtp_session.address_to->addr, smtp_session.subject, smtp_session.body);
     }
@@ -813,7 +819,8 @@ static int smtp_send_content(void)
     sprintf(content_buf,
             "FROM: <%s>\r\n"
             "TO: <%s>\r\n"
-            "SUBJECT:%s\r\n\r\n"
+            "SUBJECT:%s\r\n"
+            "Content-Type: text/html; charset=\"utf-8\"\r\n\r\n"
             "%s\r\n\r\n",
             smtp_session.address_from, smtp_session.address_to->addr, smtp_session.subject, smtp_session.body);
 #endif
